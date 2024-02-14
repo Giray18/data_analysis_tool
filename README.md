@@ -1,2 +1,3 @@
 # data_analysis_tool
-A code chunk to detect data inconsistencies in any given dataset
+Purpose of this notebook is to compile code chunks on python/pandas which makes auto-data analysis for any given dataset by multiple structured datasets.
+
