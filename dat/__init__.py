@@ -8,4 +8,8 @@ from .df_unique_cols import df_unique_cols
 from .df_null_counts import df_null_counts
 from .df_detect_json import df_detect_json
 from .df_detect_xml import df_detect_xml
+from .df_date_time import df_date_time
+from .df_value_counts import df_value_counts
+from .save_dataframe_excel import save_dataframe_excel
+from .read_df_aws import df_read_aws
 from .class_a import analysis
