@@ -12,4 +12,5 @@ from .df_date_time import df_date_time
 from .df_value_counts import df_value_counts
 from .save_dataframe_excel import save_dataframe_excel
 from .read_df_aws import df_read_aws
+from .analysis_dict import analysis_dict
 from .class_a import analysis

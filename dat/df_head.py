@@ -1,6 +1,6 @@
 import pandas as pd
 
-def df_head(df: pd.DataFrame,line_number = 0):
+def df_head(df: pd.DataFrame,line_number = 5):
     ''' Returns first lines of a dataframe
     for quick look of table field values'''
     df_head = df.head(line_number)
