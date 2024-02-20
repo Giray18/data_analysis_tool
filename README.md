@@ -7,7 +7,7 @@ By running code chunk on (https://github.com/Giray18/data_analysis_tool/blob/mai
   
   **analysis_dict.py** : A customizable dict generator that will put methods into dict. All data analysis activities will be done according to selected methods in dict
 
-  **df_shape.py** : Returns a table that shows row and column count on the dataset
+  **df_shape.py** : Returns a table that shows row and column count on the dataset<br>
   ![picture alt](data_analysis_tool_output_screenshots/df_shape.PNG)  
   
   **df_col_types.py** : Returns a dataframe that defines datatypes of fields on dataset
