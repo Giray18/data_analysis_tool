@@ -7,4 +7,10 @@ By running code chunk on (https://github.com/Giray18/data_analysis_tool/blob/mai
   * analysis_dict.py : A customizable dict generator that will put methods into dict. All data analysis activities will be done according to selected methods in dict
   * df_col_types.py : Returns a dataframe that defines datatypes of fields on dataset
   ![picture alt](data_analysis_tool_output_screenshots/df_col_types.PNG)  
-  * df_date_time.py : Returns 
+  * df_date_time.py : Returns table consisting of date-time values holding fields, min date-time on mentioned column, max date-time on mentioned column, difference between min and max values on mentioned column
+  ![picture alt](data_analysis_tool_output_screenshots/df_date_cols.PNG)
+  * df_describe_all.py : Returns table that is holding general stats regarding to all fields of dataset (e.g count, unique values count, top frequency value, (mean, std. min and ntiles for numeric columns))
+  ![picture alt](data_analysis_tool_output_screenshots/df_describe_all.PNG)
+  * df_describe_non_numerical.py : Returns table that is holding general stats regarding to non numeric fields of dataset (e.g count, unique values count, top frequency value)
+  ![picture alt](data_analysis_tool_output_screenshots/df_describe_non_num.PNG)  
+
