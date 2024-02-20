@@ -33,7 +33,7 @@ By running code chunk on (https://github.com/Giray18/data_analysis_tool/blob/mai
   **df_detect_xml.py** : Returns table that holds names of XML structured value holding fields<br>
   ![picture alt](data_analysis_tool_output_screenshots/df_xml_cols.PNG)
 
-  **df_duplicate_count.py** : Returns table that holds amount of duplicate rows in dataset
+  **df_duplicate_count.py** : Returns table that holds amount of duplicate rows in dataset<br>
   ![picture alt](data_analysis_tool_output_screenshots/df_duplicate_count.PNG)
 
   **df_flatten_json.py** : Returns table that flattens JSON structured value holding fields and merges them into main dataset
