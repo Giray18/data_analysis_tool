@@ -13,7 +13,7 @@ By running code chunk on (https://github.com/Giray18/data_analysis_tool/blob/mai
   **df_col_types.py** : Returns a dataframe that defines datatypes of fields on dataset
   ![picture alt](data_analysis_tool_output_screenshots/df_col_types.PNG)
   
-  **df_head.py** : Returns a dataframe shows first 5 rows of dataset for quick check of values in table
+  **df_head.py** : Returns a dataframe shows first 5 rows of dataset for quick check of values in table  <br>
   ![picture alt](data_analysis_tool_output_screenshots/df_head.PNG)
 
   **df_unique_cols.py** : Returns a dataframe shows field names that holds only unique values / No duplication
