@@ -1,3 +1,5 @@
-# data_analysis_tool
-Purpose of this notebook is to compile code chunks on python/pandas which makes auto-data analysis for any given dataset by multiple structured datasets.
+# Data Analysis Tool
+Purpose of this repository is to create a dynamic tool that is consisting of python and pandas scripts for auto data analysis of tabular datasets located on AWS and Azure storage.
+
+## Elements of Repository
 
