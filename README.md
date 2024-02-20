@@ -13,7 +13,7 @@ By running code chunk on (https://github.com/Giray18/data_analysis_tool/blob/mai
   **df_col_types.py** : Returns a dataframe that defines datatypes of fields on dataset
   ![picture alt](data_analysis_tool_output_screenshots/df_col_types.PNG)
   
-  **df_head.py** : Returns a dataframe shows first 5 rows of dataset for quick check of values in table  <br>
+  **df_head.py** : Returns a dataframe shows first 5 rows of dataset for quick check of values in table  
   ![picture alt](data_analysis_tool_output_screenshots/df_head.PNG)
 
   **df_unique_cols.py** : Returns a dataframe shows field names that holds only unique values / No duplication
@@ -27,10 +27,10 @@ By running code chunk on (https://github.com/Giray18/data_analysis_tool/blob/mai
   **df_describe_non_numerical.py** : Returns table that is holding general stats regarding to non numeric fields of dataset (e.g count, unique values count, top frequency value)
   ![picture alt](data_analysis_tool_output_screenshots/df_describe_non_num.PNG)
 
-  **df_detect_json.py** : Returns table that holds names of JSON structured value holding fields
+  **df_detect_json.py** : Returns table that holds names of JSON structured value holding fields<br>
   ![picture alt](data_analysis_tool_output_screenshots/df_json_cols.PNG)
 
-  **df_detect_xml.py** : Returns table that holds names of XML structured value holding fields
+  **df_detect_xml.py** : Returns table that holds names of XML structured value holding fields<br>
   ![picture alt](data_analysis_tool_output_screenshots/df_xml_cols.PNG)
 
   **df_duplicate_count.py** : Returns table that holds amount of duplicate rows in dataset
