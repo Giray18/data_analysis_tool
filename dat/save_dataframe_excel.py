@@ -11,10 +11,6 @@ def save_dataframe_excel(df_list = {},file_name = "data_analysis"):
         if type(df_list[i]) == pd.DataFrame and i != "df":
             print(i)
             df_list[i].to_excel(writer, sheet_name = i)
-        # elif i != "df_date_cols":
-        #     print(i)
-        #     df_list[i].to_excel(writer, sheet_name = i)
-        #     df_list[i].to_excel(writer, sheet_name = i)
     writer.close() 
     return "saved to excel"
     
