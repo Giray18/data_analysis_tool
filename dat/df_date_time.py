@@ -7,8 +7,9 @@ def df_date_time(df: pd.DataFrame):
     datediff between min and max'''
     #Regex pattern for date columns
     pattern_d = re.compile(r"[0-9]{4}.[0-9]{2}.[0-9]{2}.*", re.IGNORECASE)
+    pattern_d_alt = re.compile(r"[0-9]{2}.[0-9]{2}.[0-9]{4}.*", re.IGNORECASE)
     #Loop through columns detect date columns
-    col_date = [df[i].name for i in df.columns if pattern_d.match(str(df[i].iloc[0]))]
+    col_date = [df[i].name for i in df.columns if pattern_d.match(str(df[i].iloc[0])) or pattern_d_alt.match(str(df[i].iloc[0]))]
     df_date_cols = pd.DataFrame(col_date,columns = ["col_date"])
     # Getting min and max timestamps from dataset`s timestamp column
     if int(df_date_cols.size) > 0:
