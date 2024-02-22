@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+
+
 def df_value_counts(df: pd.DataFrame):
     ''' Returns dataframe that shows field values that takes 
     more than %5 of total values on a field'''
@@ -17,8 +19,12 @@ def df_value_counts(df: pd.DataFrame):
             df_ultimate = pd.concat(dict_1, axis = 1)
             # Removed all null columns
             df_ultimate = df_ultimate.loc[:,df_ultimate.notna().any(axis=0)]
-            df_ultimate = df_ultimate.astype(float).map('{:,.1%}'.format)
+            # For newer versions of pandas > 2.1 first line is valid for lower versions one line below is valid code
+            # df_ultimate = df_ultimate.astype(float).map('{:,.1%}'.format)
+            df_ultimate = df_ultimate.transform(lambda x : x.map('{:,.1%}'.format))
     return df_ultimate
+
+
 
 if __name__ == '__main__':
     df_value_counts()

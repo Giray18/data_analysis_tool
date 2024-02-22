@@ -15,4 +15,5 @@ from .read_df_aws import df_read_aws
 from .analysis_dict import analysis_dict
 from .df_flatten_json import df_flatten_json
 from .read_df_azure import create_account_sas, df_read_azure
+from .multiple_dataset_read_unique import multiple_dataset_read_unique
 from .class_a import analysis

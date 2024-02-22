@@ -1,4 +1,5 @@
 import pandas as pd
+import s3fs
 
 def df_read_aws(data_location,storage_name,file_name):
     ''' Returns dataframe by reading defined dataset from defined source'''
