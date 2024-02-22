@@ -9,7 +9,7 @@ def save_dataframe_excel(df_list = {},file_name = "data_analysis"):
     writer = pd.ExcelWriter(f"{file_name}.xlsx", engine="xlsxwriter")
     for i in df_list:
         if type(df_list[i]) == pd.DataFrame and i != "df":
-            print(i)
+            # print(i)
             df_list[i].to_excel(writer, sheet_name = i)
     writer.close() 
     return "saved to excel"
