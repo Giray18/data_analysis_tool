@@ -42,7 +42,7 @@ def df_read_azure_multiple_files(storage_account_name, account_key, container_na
         current_blob = blob.name
         source = "https://denemefileread.blob.core.windows.net/danyal/" + current_blob
         df = pd.read_csv(source)
-        File_name =  source.split("\\")[-1]
+        File_name =  current_blob
         # Creating dataframes defined on analysis_dict.py file
         for key,value in dat.analysis_dict().items():
             vars()[key] = value(df)
