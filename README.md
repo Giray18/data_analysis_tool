@@ -49,11 +49,18 @@ A created python package holding methods that can make dynamic data analysis bas
   A Jupyter notebook holding python and pandas scripts that runs all methods defined above by a loop and saves output file in working directory.<br> 
   Only "Read dataset from cloud storage" code chunk should be configured according to cloud platform that is being used for dataset source before creating dataframe variable (df).
 
+### multiple_files_analysis (ipynb notebook) :
+  A jupyter notebook python and pandas scripts that runs all methods defined above by a loop for all files in a storage cloud/local file host and saves output file in working directory.<br>
+  Currently, multiple file read feature is available for Azure storage and localfile storage.
+  
 ### old_versions file : 
   Notebooks created on dev process
 
 ### data_analysis_tool_output_screenshots : 
   Screenshots belongs to output of dat package methods after applied df passed to data_analysis_by_loop (ipynb notebook)
+
+### analysis_item.csv : 
+  An example of output data analysis file for a source file called "item.csv".
 
 
 
