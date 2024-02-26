@@ -11,19 +11,23 @@ def df_date_time(df: pd.DataFrame):
     #Loop through columns detect date columns
     col_date = [df[i].name for i in df.columns if pattern_d.match(str(df[i].iloc[0])) or pattern_d_alt.match(str(df[i].iloc[0]))]
     df_date_cols = pd.DataFrame(col_date,columns = ["col_date"])
+    # global min_max_date
+    # min_max_date = []
     # Getting min and max timestamps from dataset`s timestamp column
     if int(df_date_cols.size) > 0:
         min_max_date = [df[i].min() for i in df_date_cols.col_date.values]
         min_max_date.extend([df[i].max() for i in df_date_cols.col_date.values])
-    df_date_min_max = pd.DataFrame([min_max_date],columns = ["min_date","max_date"])
-    # Converting related columns to date-time datatype
-    for i in df_date_min_max.columns:
-        df_date_min_max[i] = pd.to_datetime(df_date_min_max[i], format='mixed')
-    # Adding diff dates column
-    df_date_min_max = df_date_min_max.assign(diff_dates=df_date_min_max['max_date']-df_date_min_max['min_date'])
-    # Concat all columns into one
-    frames = [df_date_cols,df_date_min_max]
-    df_ultimate = pd.concat(frames)
+        df_date_min_max = pd.DataFrame([min_max_date],columns = ["min_date","max_date"])
+        # Converting related columns to date-time datatype
+        for i in df_date_min_max.columns:
+            df_date_min_max[i] = pd.to_datetime(df_date_min_max[i], format='mixed')
+        # Adding diff dates column
+        df_date_min_max = df_date_min_max.assign(diff_dates=df_date_min_max['max_date']-df_date_min_max['min_date'])
+        # Concat all columns into one
+        frames = [df_date_cols,df_date_min_max]
+        df_ultimate = pd.concat(frames)
+    else:
+        df_ultimate = pd.DataFrame(['No date columns on dataset'],columns = ["date_time"])
     return df_ultimate
 
 

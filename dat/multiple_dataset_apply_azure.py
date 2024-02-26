@@ -5,6 +5,7 @@ import dat
 
 
 def create_account_sas_container(account_name: str, account_key: str):
+    ''' Creates SAS token for container level operations '''
     # Create an account SAS that's valid for one day
     start_time = datetime.utcnow()
     expiry_time = start_time + timedelta(days=1)
@@ -29,8 +30,9 @@ def create_account_sas_container(account_name: str, account_key: str):
 
 
 
-def df_read_azure_multiple_files(storage_account_name, account_key, container_name):
-    ''' Returns dataframes by reading all datasets on mentioned container '''
+def df_read_azure_multiple_files(storage_account_name: str, account_key: str, container_name: str):
+    ''' Returns dataframes by reading all datasets on mentioned container and applies
+    needed data analysis methods on dataset and saves them to working directory '''
 
     # Creating service client var 
     blob_service_client = BlobServiceClient(account_url=f"https://{storage_account_name}.blob.core.windows.net"
@@ -40,7 +42,7 @@ def df_read_azure_multiple_files(storage_account_name, account_key, container_na
     blob_list = container_client.list_blobs()
     for blob in blob_list:
         current_blob = blob.name
-        source = "https://{storage_account_name}.blob.core.windows.net/{container_name}/" + current_blob
+        source = f"https://{storage_account_name}.blob.core.windows.net/{container_name}/" + current_blob
         df = pd.read_csv(source)
         File_name =  current_blob
         # Creating dataframes defined on analysis_dict.py file
