@@ -1,6 +1,7 @@
 import pandas as pd
 from azure.storage.blob import BlobServiceClient, generate_account_sas, ResourceTypes, AccountSasPermissions
 from datetime import datetime, timedelta, date
+import dat
 
 
 def create_account_sas(account_name: str, account_key: str):
@@ -26,8 +27,11 @@ def create_account_sas(account_name: str, account_key: str):
 
     return sas_token
 
-def df_read_azure(storage_account_name, account_key, blob_name, container_name, file_name = []):
-    ''' Returns dataframe by reading defined dataset from defined source'''
+
+
+def df_read_azure_single_file(storage_account_name, account_key, blob_name, container_name, file_name = []):
+    ''' Returns dataframe by reading defined dataset from defined source
+    blob name == file name with full extension like "event.csv"'''
 
     # Creating service client var 
     blob_service_client = BlobServiceClient(account_url=f"https://{storage_account_name}.blob.core.windows.net"

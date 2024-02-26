@@ -14,7 +14,8 @@ from .save_dataframe_excel import save_dataframe_excel
 from .read_df_aws import df_read_aws
 from .analysis_dict import analysis_dict
 from .df_flatten_json import df_flatten_json
-from .read_df_azure import create_account_sas, df_read_azure
+from .read_df_azure import create_account_sas, df_read_azure_single_file
+from .multiple_dataset_apply_azure import create_account_sas_container,df_read_azure_multiple_files
 from .multiple_dataset_read_unique import multiple_dataset_read_unique
 from .multiple_dataset_apply import multiple_dataset_apply
 from .class_a import analysis
