@@ -50,8 +50,8 @@ A created python package holding methods that can make dynamic data analysis bas
   Only "Read dataset from cloud storage" code chunk should be configured according to cloud platform that is being used for dataset source before creating dataframe variable (df).
 
 ### multiple_files_analysis (ipynb notebook) :
-  A jupyter notebook python and pandas scripts that runs all methods defined above by a loop for all files in a storage cloud/local file host and saves output file in working directory.<br>
-  Currently, multiple file read feature is available for Azure storage and localfile storage.
+  A jupyter notebook holding python and pandas scripts that runs all methods defined above by a loop for all files in a storage cloud/local file host and saves output file in working directory.<br>
+  Currently, multiple file read feature is available for only Azure storage and localfile storage.
   
 ### old_versions file : 
   Notebooks created on dev process
