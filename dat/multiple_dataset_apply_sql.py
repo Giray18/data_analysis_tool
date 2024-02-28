@@ -1,0 +1,73 @@
+import pandas as pd
+import os
+import glob
+import numpy as np
+import dat
+from datetime import datetime, timedelta, date
+import sqlite3
+import mysql
+
+def multiple_dataset_apply_mysql(path = []):
+    ''' This function reads multiple tables from connected database as parameter 
+    then runs all functions on dat package to read table '''
+
+    db=mysql.connector.connect(host="your host", user="your username", password="your_password",database="database_name")
+
+    cursor=db.cursor()
+
+    cursor.execute("SHOW TABLES")
+    read_table_names = [table_name[0] for table_name in cursor]
+
+
+    # loop over the list of csv files
+    for f in read_table_names:
+        # read the csv files
+        df = pd.read_csv(f, low_memory=False)
+        File_name =  f.split("\\")[-1]
+        # Creating dataframes defined on analysis_dict.py file
+        for key,value in dat.analysis_dict().items():
+            vars()[key] = value(df)
+            # Saving dataframes consisting of analysis into a single excel file
+            dat.save_dataframe_excel(vars(),f"analysis_{File_name}_{date.today()}")
+    return "dataset_analysis_saved"
+
+def multiple_dataset_apply_sqlite(database_name = []):
+    ''' This function reads multiple tables from connected database as parameter 
+    then runs all functions on dat package to read table '''
+    # use glob to get all the csv files 
+    # in the folder
+    con = sqlite3.connect("Chinook.db")
+    # encoding = "utf-16-le"
+    # con.text_factory = lambda x: str(x, encoding)
+    con.text_factory = lambda b: b.decode(errors = 'ignore')
+    cur = con.cursor()
+    cur.execute("SELECT name FROM sqlite_master WHERE type = 'table'")
+    # saving all tables of database into a list
+    read_table_names = [table_name[0] for table_name in cur]
+
+    # csv_files = glob.glob(os.path.join(path, "*.csv"))
+
+    # #xlsx location
+    # xlsx_files = glob.glob(os.path.join(path, "*.xlsx"))
+
+    # loop over the list of csv files
+    for f in read_table_names:
+        print(f)
+        # read the csv files
+        # df = pd.read_csv(f, low_memory=False)
+        df = pd.read_sql(f'SELECT * FROM {f}', con)
+        File_name =  f.split("\\")[-1]
+        # Creating dataframes defined on analysis_dict.py file
+        for key,value in dat.analysis_dict().items():
+            vars()[key] = value(df)
+            # Saving dataframes consisting of analysis into a single excel file
+            dat.save_dataframe_excel(vars(),f"analysis_{File_name}_{date.today()}")
+    return "dataset_analysis_saved"
+
+
+# if __name__ == '__main__':
+#     multiple_dataset_apply()
+
+
+
+
