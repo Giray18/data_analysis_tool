@@ -3,16 +3,21 @@ import numpy as np
 
 
 
-def df_value_counts(df: pd.DataFrame):
+def df_value_counts(df: pd.DataFrame, percentage = 0.05):
     ''' Returns dataframe that shows field values that takes 
     more than %5 of total values on a field'''
     #Created an empty dict to append series for out concat operation
     dict_1 = {}
-    for i in df.columns:
-        if df[i].dtype in ["string","object"]:
+    global df_ultimate
+    df = df.select_dtypes(include=["string","object"])
+    if int(df.size) < 0:
+        df_ultimate = pd.DataFrame(['No value has dominance more than %5 of column values on dataset'],columns = ["describe_non_numeric"])
+    else:
+        for i in df.columns:
+            # if df[i].dtype in ["string","object"]:
             s = df[i].explode().value_counts(normalize=True)
             # Filtered values does not have more than %5 of all values in a particular column
-            s = s.loc[lambda x : x >= 0.05]
+            s = s.loc[lambda x : x >= percentage]
             dict_1[i] = []
             dict_1.update({i:s})
             # Concat all series we created into one

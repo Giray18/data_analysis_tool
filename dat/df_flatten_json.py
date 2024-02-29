@@ -8,12 +8,13 @@ def df_flatten_json(df: pd.DataFrame):
     df_json_cols = pd.DataFrame(col_with_json_val,columns = ["col_with_json_val"])
     if int(df_json_cols.size) > 0:
         for i in df_json_cols.col_with_json_val.values:
-            # print(i)
-            # vars()[i] = df[i].str.decode('utf-32').fillna(df[i])
-            # vars()[i]  = df[i].apply(lambda x: x.decode("ascii"))
-            vars()[i] = df[i].map(lambda x: json.loads(x))
-            vars()[i] = pd.json_normalize(vars()[i])
-            df = df.join(vars()[i])
+            # Coming from a past problem can be deleted
+            if i == "Column1":
+                continue
+            else:                                                                                                                                     
+                vars()[i] = df[i].map(lambda x: json.loads(x))
+                vars()[i] = pd.json_normalize(vars()[i])
+                df = df.join(vars()[i])
     else:
         df
     return df
