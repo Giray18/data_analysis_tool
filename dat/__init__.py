@@ -19,3 +19,4 @@ from .multiple_dataset_apply_azure import create_account_sas_container,df_read_a
 from .multiple_dataset_read_unique import multiple_dataset_read_unique
 from .multiple_dataset_apply_csv import multiple_dataset_apply
 from .multiple_dataset_apply_sql import *
+from .df_columns_contains_each import detect_containing_columns
