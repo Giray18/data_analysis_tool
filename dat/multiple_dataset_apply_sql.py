@@ -8,6 +8,7 @@ import sqlite3
 import mysql
 import xlsxwriter
 import openpyxl
+import re
 
 def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str):
     ''' This function reads multiple tables from connected database as parameter 
@@ -42,6 +43,10 @@ def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str)
 def multiple_dataset_apply_sqlite(database_name:str):
     ''' This function reads multiple tables from connected database as parameter 
     then runs all functions on dat package to read table '''
+    #Regex pattern for date columns
+    pattern_d = re.compile(r"[0-9]{4}.[0-9]{2}.[0-9]{2}.*", re.IGNORECASE)
+    pattern_d_alt = re.compile(r"[0-9]{2}.[0-9]{2}.[0-9]{4}.*", re.IGNORECASE)
+    
     # use glob to get all sql tables
     # in the folder
     con = sqlite3.connect(database_name)
@@ -56,16 +61,25 @@ def multiple_dataset_apply_sqlite(database_name:str):
     # loop over the list of sql tables
     for f in read_table_names:
         print(f)
-        # read the sql tables
-        df = pd.read_sql(f'SELECT * FROM {f}', con)
-        # File_name =  f.split("\\")[-1]
+        # read the sql tables by condition of date-time column hold
+        df_detect = pd.read_sql(f'SELECT * FROM {f} LIMIT 1', con)
+        # Getting list of date-time columns from detection dfs
+        col_date = [df_detect[i].name for i in df_detect.columns if pattern_d.match(str(df_detect[i].iloc[0])) or pattern_d_alt.match(str(df_detect[i].iloc[0]))]
+        if len(col_date) > 0:
+            df = pd.read_sql_query(f"SELECT * FROM {f} WHERE {f}.{col_date[0]} == '{date.today()}'", con)
+        else:
+            df = pd.read_sql(f'SELECT * FROM {f}', con)
         # Creating a dict consisting of all dataframes
-        dataframes_dict[f] = df
+        if df.size != 0:
+            dataframes_dict[f] = df  
         # Creating dataframes defined on analysis_dict.py file
         for key,value in dat.analysis_dict().items():
-            vars()[key] = value(df)
+            if df.size != 0:
+                vars()[key] = value(df)
+                dat.save_dataframe_excel(vars(),f"analysis_{f}_{date.today()}")
+            else:
+                dat.save_dataframe_excel(df,f"analysis_{f}_{date.today()}")
             # Saving dataframes consisting of analysis into a single excel file
-            dat.save_dataframe_excel(vars(),f"analysis_{f}_{date.today()}")
         # alldfs = [var for var in dir() if isinstance(eval(var), pd.core.frame.DataFrame)]
     return dataframes_dict
 
@@ -73,6 +87,9 @@ def multiple_dataset_apply_containing_cols_sqlite(database_name = 'str'):
     # containing column detection run starts from here
     global frames
     frames = []
+    global df_ultimate
+    df_ultimate = pd.DataFrame()
+    # Running dataframe save function and apply normal transformations first
     dataframes_dict = multiple_dataset_apply_sqlite(database_name)
     for key,value in dataframes_dict.items():
         for key_col,columnData in value.items():
@@ -82,8 +99,9 @@ def multiple_dataset_apply_containing_cols_sqlite(database_name = 'str'):
                         d = {"table_1" : [key], "col_1" : [key_col], "table_2" : [key_1], "col_2" : [key_col_1]}
                         df_output = pd.DataFrame(data=d)
                         frames.append(df_output)
-                        global df_ultimate
+                        #global df_ultimate
                         df_ultimate = pd.concat(frames)
+    # Saving containing cols dataframe 
     writer = pd.ExcelWriter(f"containing_cols_{date.today()}.xlsx", engine="xlsxwriter")
     df_ultimate.to_excel(writer,sheet_name="containing_cols")
     writer.close()
