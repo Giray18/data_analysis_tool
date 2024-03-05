@@ -6,6 +6,8 @@ import dat
 from datetime import datetime, timedelta, date
 import sqlite3
 import mysql
+import xlsxwriter
+import openpyxl
 
 def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str):
     ''' This function reads multiple tables from connected database as parameter 
@@ -17,19 +19,24 @@ def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str)
     cursor=db.cursor()
 
     cursor.execute("SHOW TABLES")
+    # saving all tables of database into a list
     read_table_names = [table_name[0] for table_name in cursor]
+    # Dict for dataframes
+    dataframes_dict = {}
 
-
-    # loop over the list of csv files
+    # loop over the list of sql tables
     for f in read_table_names:
-        # read the csv files
-        df = pd.read_csv(f, low_memory=False)
-        File_name =  f.split("\\")[-1]
+        print(f)
+        # read the sql tables
+        #df = pd.read_csv(f, low_memory=False)
+        df = pd.read_sql(f'SELECT * FROM {f}', db)
+        # Creating a dict consisting of all dataframes
+        dataframes_dict[f] = df
         # Creating dataframes defined on analysis_dict.py file
         for key,value in dat.analysis_dict().items():
             vars()[key] = value(df)
             # Saving dataframes consisting of analysis into a single excel file
-            dat.save_dataframe_excel(vars(),f"analysis_{File_name}_{date.today()}")
+            dat.save_dataframe_excel(vars(),f"analysis_{f}_{date.today()}")
     return "dataset_analysis_saved"
 
 def multiple_dataset_apply_sqlite(database_name:str):
@@ -62,21 +69,43 @@ def multiple_dataset_apply_sqlite(database_name:str):
         # alldfs = [var for var in dir() if isinstance(eval(var), pd.core.frame.DataFrame)]
     return dataframes_dict
 
-def multiple_dataset_apply_containing_cols(database_name = 'str'):
+def multiple_dataset_apply_containing_cols_sqlite(database_name = 'str'):
     # containing column detection run starts from here
+    global frames
     frames = []
-    global df_ultimate
     dataframes_dict = multiple_dataset_apply_sqlite(database_name)
     for key,value in dataframes_dict.items():
         for key_col,columnData in value.items():
             for key_1,value_1 in dataframes_dict.items():
                 for key_col_1,colondata in value_1.items():
                     if columnData.isin(colondata).all() == True and key_col != key_col_1 and "Id" not in key_col and "Id" not in key_col_1:
-                        # print(key,key_col,key_1,key_col_1)
-                        df_output = pd.DataFrame([key,key_col,key_1,key_col_1],columns = ["columns_contain_each"])
+                        d = {"table_1" : [key], "col_1" : [key_col], "table_2" : [key_1], "col_2" : [key_col_1]}
+                        df_output = pd.DataFrame(data=d)
                         frames.append(df_output)
-                    # # df_output = pd.DataFrame([list_1],columns = "columns_containing")
+                        global df_ultimate
                         df_ultimate = pd.concat(frames)
-    dat.save_dataframe_excel(df_ultimate,f"containing_cols_{date.today()}")
-    return df_ultimate
+    writer = pd.ExcelWriter(f"containing_cols_{date.today()}.xlsx", engine="xlsxwriter")
+    df_ultimate.to_excel(writer,sheet_name="containing_cols")
+    writer.close()
+    return "output files saved"
+
+def multiple_dataset_apply_containing_cols_mysql(host:str, user:str, password:str, database:str):
+    # containing column detection run starts from here
+    global frames
+    frames = []
+    dataframes_dict = multiple_dataset_apply_mysql(host, user, password, database)
+    for key,value in dataframes_dict.items():
+        for key_col,columnData in value.items():
+            for key_1,value_1 in dataframes_dict.items():
+                for key_col_1,colondata in value_1.items():
+                    if columnData.isin(colondata).all() == True and key_col != key_col_1 and "Id" not in key_col and "Id" not in key_col_1:
+                        d = {"table_1" : [key], "col_1" : [key_col], "table_2" : [key_1], "col_2" : [key_col_1]}
+                        df_output = pd.DataFrame(data=d)
+                        frames.append(df_output)
+                        global df_ultimate
+                        df_ultimate = pd.concat(frames)
+    writer = pd.ExcelWriter(f"containing_cols_{date.today()}.xlsx", engine="xlsxwriter")
+    df_ultimate.to_excel(writer,sheet_name="containing_cols")
+    writer.close()
+    return "output files saved"
 
