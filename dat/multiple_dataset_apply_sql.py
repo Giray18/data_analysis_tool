@@ -26,6 +26,12 @@ def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str)
     # Dict for dataframes
     dataframes_dict = {}
 
+    # Creating working directory for daily partitioning
+    dir = os.path.join("C:\\", "Users\MeliaMuyo\Desktop\ALL\GIRAY\data_analysis_tool", f'{date.today()}')
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+    os.chdir(dir)
+
     # loop over the list of sql tables
     for f in read_table_names:
         print(f)
@@ -81,6 +87,14 @@ def multiple_dataset_apply_sqlite(database_name:str):
     read_table_names = [table_name[0] for table_name in cur]
     # Dict for dataframes
     dataframes_dict = {}
+
+    # Creating working directory for daily partitioning
+    dir = os.path.join("C:\\", "Users\MeliaMuyo\Desktop\ALL\GIRAY\data_analysis_tool", f'{date.today()}')
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+    os.chdir(dir)
+
+
     # loop over the list of sql tables
     for f in read_table_names:
         print(f)
@@ -124,6 +138,12 @@ def multiple_dataset_apply_containing_cols_sqlite(database_name = 'str'):
                         frames.append(df_output)
                         #global df_ultimate
                         df_ultimate = pd.concat(frames)
+
+    # Creating working directory for daily partitioning
+    dir = os.path.join("C:\\", "Users\MeliaMuyo\Desktop\ALL\GIRAY\data_analysis_tool", f'{date.today()}')
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+    os.chdir(dir)
     # Saving containing cols dataframe 
     writer = pd.ExcelWriter(f"containing_cols_{date.today()}.xlsx", engine="xlsxwriter")
     df_ultimate.to_excel(writer,sheet_name="containing_cols")
@@ -145,6 +165,12 @@ def multiple_dataset_apply_containing_cols_mysql(host:str, user:str, password:st
                         frames.append(df_output)
                         global df_ultimate
                         df_ultimate = pd.concat(frames)
+
+    # Creating working directory for daily partitioning
+    dir = os.path.join("C:\\", "Users\MeliaMuyo\Desktop\ALL\GIRAY\data_analysis_tool", f'{date.today()}')
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+    os.chdir(dir)
     writer = pd.ExcelWriter(f"containing_cols_{date.today()}.xlsx", engine="xlsxwriter")
     df_ultimate.to_excel(writer,sheet_name="containing_cols")
     writer.close()
