@@ -13,12 +13,13 @@ import re
 def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str):
     ''' This function reads multiple tables from connected database as parameter 
     then runs all functions on dat package to read table '''
+    #Regex pattern for date columns
+    pattern_d = re.compile(r"[0-9]{4}.[0-9]{2}.[0-9]{2}.*", re.IGNORECASE)
+    pattern_d_alt = re.compile(r"[0-9]{2}.[0-9]{2}.[0-9]{4}.*", re.IGNORECASE)
 
     # db=mysql.connector.connect(host="your host", user="your username", password="your_password",database="database_name")
     db=mysql.connector.connect(host, user, password, database)
-
     cursor=db.cursor()
-
     cursor.execute("SHOW TABLES")
     # saving all tables of database into a list
     read_table_names = [table_name[0] for table_name in cursor]
@@ -28,16 +29,38 @@ def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str)
     # loop over the list of sql tables
     for f in read_table_names:
         print(f)
-        # read the sql tables
-        #df = pd.read_csv(f, low_memory=False)
-        df = pd.read_sql(f'SELECT * FROM {f}', db)
+        # read the sql tables by condition of date-time column hold
+        df_detect = pd.read_sql(f'SELECT * FROM {f} LIMIT 1', cursor)
+        # Getting list of date-time columns from detection dfs
+        col_date = [df_detect[i].name for i in df_detect.columns if pattern_d.match(str(df_detect[i].iloc[0])) or pattern_d_alt.match(str(df_detect[i].iloc[0]))]
+        if len(col_date) > 0:
+            df = pd.read_sql_query(f"SELECT * FROM {f} WHERE {f}.{col_date[0]} == '{date.today()}'", cursor)
+        else:
+            df = pd.read_sql(f'SELECT * FROM {f}', cursor)
         # Creating a dict consisting of all dataframes
-        dataframes_dict[f] = df
+        if df.size != 0:
+            dataframes_dict[f] = df  
         # Creating dataframes defined on analysis_dict.py file
         for key,value in dat.analysis_dict().items():
-            vars()[key] = value(df)
+            if df.size != 0:
+                vars()[key] = value(df)
+                dat.save_dataframe_excel(vars(),f"analysis_{f}_{date.today()}")
+            else:
+                dat.save_dataframe_excel(df,f"analysis_{f}_{date.today()}")
+
+    # loop over the list of sql tables
+    #for f in read_table_names:
+    #    print(f)
+        # read the sql tables
+        #df = pd.read_csv(f, low_memory=False)
+    #    df = pd.read_sql(f'SELECT * FROM {f}', db)
+        # Creating a dict consisting of all dataframes
+    #    dataframes_dict[f] = df
+        # Creating dataframes defined on analysis_dict.py file
+    #    for key,value in dat.analysis_dict().items():
+    #        vars()[key] = value(df)
             # Saving dataframes consisting of analysis into a single excel file
-            dat.save_dataframe_excel(vars(),f"analysis_{f}_{date.today()}")
+    #        dat.save_dataframe_excel(vars(),f"analysis_{f}_{date.today()}")
     return "dataset_analysis_saved"
 
 def multiple_dataset_apply_sqlite(database_name:str):
