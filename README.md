@@ -2,7 +2,7 @@
 Purpose of this repository is to create a dynamic tool that is consisting of python and pandas scripts for auto data analysis of tabular datasets located on AWS,Azure storage, local folder and SQL database.
 By running jupyter notebook located on (https://github.com/Giray18/data_analysis_tool/blob/main/data_analysis_by_loop.ipynb) a xmlx formatted data analysis summary of source dataset being saved into working directory. Example of output file can be found on below folder location (https://github.com/Giray18/data_analysis_tool/tree/main/sample_analysis_results)
 
-Also, python program located on (https://github.com/Giray18/data_analysis_tool/blob/main/auto_run.py) can be run by task manager of operating system. By this way data analysis scripts run and creates daily data analysis result files with saving them to working directory.
+Also, python program located on (https://github.com/Giray18/data_analysis_tool/blob/main/auto_run.py) can be run by task manager of operating system. By this way data analysis scripts run and creates daily data analysis result files of tables located in sql database with saving them to working directory.
 
 ## Elements of Repository
 ### DAT Python Package : 
