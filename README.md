@@ -45,6 +45,12 @@ A created python package holding methods that can make dynamic data analysis bas
   **df_value_counts.py** : Returns table that shows value counts on a field that is more than %5 of entire field row amount.
   ![picture alt](data_analysis_tool_output_screenshots/df_value_counts.PNG)
 
+  **df_data_dict.py** : Creates an excel file that holds SQL table names, table field names and data types that column holding. Data types defined based on spesific regex pattern.
+
+  **df_find_value.py** : Finds spesific value on defined SQL database and returns table name, column name that spesific value is located.
+
+  **multiple_dataset_apply_containing_cols.py** : Detects SQL table field names which is equal or in another table's field. This is helpful when detecting potential key columns. That method skips "ID" keyword holding fields to eliminate Primary key/Index columns
+
 ### data_analysis_by_loop (ipynb notebook) :
   A Jupyter notebook holding python and pandas scripts that runs all methods defined above by a loop and saves output file in working directory.<br> 
   Only "Read dataset from cloud storage" code chunk should be configured according to cloud platform that is being used for dataset source before creating dataframe variable (df).
@@ -52,6 +58,18 @@ A created python package holding methods that can make dynamic data analysis bas
 ### multiple_files_analysis (ipynb notebook) :
   A jupyter notebook holding python and pandas scripts that runs all methods defined above by a loop for all files in a storage cloud/local file host and saves output file in working directory.<br>
   Currently, multiple file read feature is available for only Azure storage and localfile storage.
+
+### auto_run.py :
+  A python file that is being used to run daily auto task by task manager of operating system. Based on daily run analysis belongs to current date automatically being saved to working directory
+
+### automater.bat :
+  Batch file for run analysis automatically by task manager of operating system.
+
+### Date-Time named folders (2024-03-06) :
+  A partitioned file based on current date-time of system. Holds analysis results belongs to current date. 
+
+### playground (ipynb notebook) :
+  A jupyter notebook that is being used for dev purposes
   
 ### old_versions file : 
   Notebooks created on dev process
@@ -59,8 +77,13 @@ A created python package holding methods that can make dynamic data analysis bas
 ### data_analysis_tool_output_screenshots : 
   Screenshots belongs to output of dat package methods after applied df passed to data_analysis_by_loop (ipynb notebook)
 
-### analysis_item.csv : 
-  An example of output data analysis file for a source file called "item.csv".
+### sample_analysis_results :
+  Holding excel sheets that are example of data analysis outcomes
+
+### Chinook.db : 
+  Sample sqlite database used for dev purposes.
+
+
 
 
 
