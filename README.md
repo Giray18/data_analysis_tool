@@ -1,8 +1,15 @@
 # Data Analysis Tool
-Purpose of this repository is to create a dynamic tool that is consisting of python and pandas scripts for auto data analysis of tabular datasets located on AWS,Azure storage, local folder and SQL database.
-By running jupyter notebook located on (https://github.com/Giray18/data_analysis_tool/blob/main/data_analysis_by_loop.ipynb) a xmlx formatted data analysis summary of source dataset being saved into working directory. Example of output file can be found on below folder location (https://github.com/Giray18/data_analysis_tool/tree/main/sample_analysis_results)
+Purpose of this repository is to create a dynamic tool that is consisting of python and pandas scripts for auto data analysis of structured/semi structured datasets located on AWS,Azure storage, local folder or SQL database.
 
-Also, python program located on (https://github.com/Giray18/data_analysis_tool/blob/main/auto_run.py) can be run by task manager of operating system. By this way data analysis scripts run and creates daily data analysis result files of tables located in sql database with saving them to working directory.
+Initiation of tool could be done by 3 different options
+First, for single files on cloud storage by running jupyter notebook located on (https://github.com/Giray18/data_analysis_tool/blob/main/data_analysis_by_loop.ipynb) a xmlx formatted data analysis summary of source dataset being saved into working directory. Example of output file can be found on below folder location.(https://github.com/Giray18/data_analysis_tool/tree/main/sample_analysis_results)
+Applied analysis methods are being saved in helper file located on (https://github.com/Giray18/data_analysis_tool/blob/main/dat/analysis_dict.py), by adjusting this helper file applied methods can be adjusted.
+
+Second, for multiple files located on cloud storage or in a local folder by running jupyter notebook located on (https://github.com/Giray18/data_analysis_tool/blob/main/data_analysis_by_loop.ipynb) required data analysis can be applied.
+
+Third, for analysis of data located on sql tables on a spesific database methods on (https://github.com/Giray18/data_analysis_tool/blob/main/dat/multiple_dataset_apply_sql.py) can be used.
+
+Also, python program located on (https://github.com/Giray18/data_analysis_tool/blob/main/auto_run.py) can be run by task manager of operating system. By this way data analysis scripts run and creates daily data analysis result files of tables located in sql database with saving them to working directory as partitioned by date.
 
 ## Elements of Repository
 ### DAT Python Package : 
