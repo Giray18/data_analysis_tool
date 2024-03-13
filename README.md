@@ -60,7 +60,7 @@ A created python package holding methods that can make dynamic data analysis bas
 
   **multiple_dataset_apply_containing_cols.py** : Detects SQL table field names which is equal or in another table's field. This is helpful when detecting potential key columns. That method skips "ID" keyword holding fields to eliminate Primary key/Index columns
 
-### Other files on repo : 
+## Other files on repo : 
 
   **multiple_files_analysis (ipynb notebook) :**
   A jupyter notebook holding python and pandas scripts that runs all methods defined above by a loop for all files in a storage cloud/local file host and saves output file in working directory.<br>
