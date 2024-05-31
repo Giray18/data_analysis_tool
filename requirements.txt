@@ -1,0 +1,16 @@
+pandas
+# os
+# glob
+numpy
+datetime
+# sqlite3
+mysql
+xlsxwriter
+openpyxl
+# re
+# codecs
+# json
+azure-storage-blob
+SQLAlchemy
+mysql-connector-python
+s3fs
