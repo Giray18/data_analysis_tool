@@ -33,7 +33,7 @@ def multiple_dataset_apply_mysql(host:str, user:str, password:str, database:str)
     dataframes_dict = {}
 
     # Creating working directory for daily partitioning
-    dir = os.path.join("C:\\", "Users\Lenovo\Desktop\exam_eti\data_analysis_tool", f'{date.today()}')
+    dir = os.path.join("C:\\", "Users\Lenovo\Desktop\exam_eti\containerized_tool\data_analysis_tool", f'{date.today()}')
     if not os.path.exists(dir):
         os.mkdir(dir)
     os.chdir(dir)
@@ -178,7 +178,7 @@ def multiple_dataset_apply_containing_cols_mysql(host:str, user:str, password:st
                         df_ultimate = pd.concat(frames)
 
     # Creating working directory for daily partitioning
-    dir = os.path.join("C:\\", "Users\Lenovo\Desktop\exam_eti\data_analysis_tool", f'{date.today()}')
+    dir = os.path.join("C:\\", "Users\Lenovo\Desktop\exam_eti\containerized_tool\data_analysis_tool", f'{date.today()}')
     if not os.path.exists(dir):
         os.mkdir(dir)
     os.chdir(dir)
