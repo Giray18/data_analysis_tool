@@ -176,7 +176,6 @@ def multiple_dataset_apply_containing_cols_mysql(host:str, user:str, password:st
                         frames.append(df_output)
                         global df_ultimate
                         df_ultimate = pd.concat(frames)
-
     # Creating working directory for daily partitioning
     dir = os.path.join("C:\\", "Users\Lenovo\Desktop\exam_eti\containerized_tool\data_analysis_tool", f'{date.today()}')
     if not os.path.exists(dir):
