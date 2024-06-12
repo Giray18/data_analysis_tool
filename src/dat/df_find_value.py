@@ -3,9 +3,6 @@ import os
 import glob
 import numpy as np
 import dat
-# from save_dataframe_excel import save_dataframe_excel
-# from analysis_dict import analysis_dict
-# from dat import *
 from datetime import datetime, timedelta, date
 from sqlalchemy.exc import DatabaseError
 import sqlite3
@@ -97,6 +94,7 @@ def find_value_mysql(host:str, user:str, password:str, database:str,value:str):
         #     df = pd.read_sql_query(f"SELECT * FROM {f} WHERE {f}.{col_date[0]} == '{date.today()}'", con)
         # else:
         #     df = pd.read_sql(f'SELECT * FROM {f}', con)
+        #####
         # Creating output dataframe
         df_check = pd.DataFrame([value], columns=["value"])
         # Detect values from read table and save into frames list
