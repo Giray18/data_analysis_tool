@@ -73,10 +73,14 @@ A created python package holding methods that can make dynamic data analysis bas
 
 
 ### mysql_analyzer :
-A MYSQL compliant spesific class that has methods from DAT package explained above.
+A MYSQL compliant spesific class that has methods from DAT package explained above for quick data profiling of MYSQL database.
 
 ### old_versions : 
 Notebooks created on dev process
+
+### playground_notebooks :
+Multiple .py and ipynb files used on development, This folder can be checked in case example of initiation of DAT package and MYSQL class needed to be seen.
+
 
 
 
