@@ -15,6 +15,14 @@ Also, python program located on (https://github.com/Giray18/data_analysis_tool/b
 ### Sample_database :
 A .db file to be used on dev part of the project.
 
+### data_analysis_tool_output_screenshots :
+Screenshots belongs to output of dat package methods after applied to a dataframe.
+
+### profiling_analysis_outputs : 
+Folder where output xlsx files saved. Can be checked to see how output of methods look like
+
+## SRC folder
+
 ### DAT Python Package : 
 A created python package holding methods that can make dynamic data analysis based on data types exist on dataset. Mentioned methods are defined below; (Package link : https://github.com/Giray18/data_analysis_tool/tree/main/dat)
   
@@ -91,11 +99,6 @@ A created python package holding methods that can make dynamic data analysis bas
   **data_analysis_tool_output_screenshots :**
   Screenshots belongs to output of dat package methods after applied df passed to data_analysis_by_loop (ipynb notebook)
 
-  **sample_analysis_results :**
-  Holding excel sheets that are example of data analysis outcomes
-
-  **Chinook.db :** 
-  Sample sqlite database used for dev purposes.
 
 
 
