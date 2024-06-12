@@ -3,6 +3,7 @@ Purpose of this repository is to create a dynamic tool that is consisting of pyt
 
 There are 2 main products on repo located on SRC folder.<br>
 -**DAT python package**, could be used by 'import dat' command. Details related to package can be found below.<br>
+Example usage (https://github.com/Giray18/data_analysis_tool/blob/main/src/playground_notebooks/data_analysis_by_loop.ipynb) <br>
 -**mysql_analyzer class**, could be used by 'import mysql_analyzer' command. Details can be found below. <br>
 Example usage (https://github.com/Giray18/data_analysis_tool/blob/main/src/playground_notebooks/oop_pandas.ipynb) <br>
 
