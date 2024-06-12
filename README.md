@@ -2,8 +2,8 @@
 Purpose of this repository is to create a dynamic tool that is consisting of python and pandas scripts for auto data analysis of structured/semi structured datasets located on AWS,Azure storage, local folder or SQL database.
 
 There are 2 main products on repo located on SRC folder.<br>
--DAT python package could be used by 'import dat' command. Details related to package can be found below.<br>
--mysql_analyzer class could be used by 'import mysql_analyzer' command. Details can be found below. <br>
+-**DAT python package**, could be used by 'import dat' command. Details related to package can be found below.<br>
+-**mysql_analyzer class**, could be used by 'import mysql_analyzer' command. Details can be found below. <br>
 Example usage (https://github.com/Giray18/data_analysis_tool/blob/main/src/playground_notebooks/oop_pandas.ipynb) <br>
 
 
