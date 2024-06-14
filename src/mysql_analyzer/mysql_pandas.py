@@ -125,3 +125,14 @@ class mysql_profiler:
         df_output.to_excel(writer,sheet_name="found_value")
         writer.close()
         return "value find table saved"
+    
+
+    def multiple_dataset_apply_mysql_query(self,sql_command:str):
+        ''' This function gets sql statement as text input and runs it through connected 
+         MYSQL db '''
+        # Creating connection string and running sql command
+        db=mysql.connector.connect(host = str(self.host), user = str(self.user), password = str(self.password), database = str(self.database))
+        cursor=db.cursor()
+        cursor.execute(f"{sql_command}")
+        myresult = cursor.fetchall()
+        return myresult
