@@ -1,4 +1,7 @@
 import numpy as np
+import sys
+# sys.path.insert(0, 'C:/Users/Lenovo/Desktop/exam_eti/containerized_tool/data_analysis_tool')
+sys.path.insert(0, '/src/src')
 import pandas as pd
 import dat
 from collections import defaultdict
@@ -136,3 +139,5 @@ class mysql_profiler:
         cursor.execute(f"{sql_command}")
         myresult = cursor.fetchall()
         return myresult
+    
+print("working")

@@ -1,12 +1,12 @@
 import pandas as pd
 from azure.storage.blob import BlobServiceClient, generate_account_sas, ResourceTypes, AccountSasPermissions
 from datetime import datetime, timedelta, date
-import dat
+# import dat
 
 
 def create_account_sas(account_name: str, account_key: str):
     # Create an account SAS that's valid for one day
-    start_time = datetime.utcnow()
+    start_time = datetime.datetime.utcnow()
     expiry_time = start_time + timedelta(days=1)
 
     # Define the SAS token permissions
