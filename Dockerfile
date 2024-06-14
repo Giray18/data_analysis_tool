@@ -26,7 +26,7 @@ COPY ./src ./src
 EXPOSE 3000
 
 # start the server
-# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]s
 # CMD [ "--host", "0.0.0.0", "--port", "80", "--reload"]
 CMD ["python3", "src/mysql_analyzer/mysql_pandas.py"]
 # , "start", "--config", "config.yml"]
