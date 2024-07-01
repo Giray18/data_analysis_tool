@@ -167,11 +167,11 @@ class mysql_profiler:
         last_address_id = self.multiple_dataset_apply_mysql_query(f'{sql_command}')
         id = int(str(last_address_id[0]).strip("(,)"))
         counter = 0
-        while counter < 10:
+        while counter < 20:
             address = fake.city()
             city = fake.city_suffix()
             city_id = random.randrange(10, 599)
-            store_id = random.randrange(1, 2)
+            store_id = random.randrange(1, 3)
             post_code = fake.postcode()
             phone = fake.country_calling_code()
             name = fake.name()
@@ -182,6 +182,9 @@ class mysql_profiler:
                                                             (address_id,address,address2,district,city_id,\
                                                             postal_code,phone,last_update) \
                                                             VALUES ('{id}','{address}','{address}','{city}','{city_id}','{post_code}','{phone}','{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}')")
+                self.multiple_dataset_apply_mysql_insert(f"INSERT INTO sakila.customer (store_id,first_name,last_name,email,address_id,active,create_date,last_update) \
+                VALUES ('{store_id}','{name}','{s_name}','{e_mail}','{id}','{random.randrange(1, 2)}',\
+                '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}','{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}')")
             except mysql.connector.IntegrityError as err:
                 self.multiple_dataset_apply_mysql_insert(f"INSERT INTO sakila.customer (store_id,first_name,last_name,email,address_id,active,create_date,last_update) \
                 VALUES ('{store_id}','{name}','{s_name}','{e_mail}','{id}','{random.randrange(1, 2)}',\
