@@ -13,7 +13,6 @@ from datetime import datetime, timedelta, date
 from mysql.connector.errors import Error
 from faker import Faker
 import random
-import json
 import time
 # import mysql_analyzer
 
