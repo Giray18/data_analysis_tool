@@ -1,7 +1,8 @@
 {
-    "editor.defaultFormatter": "ms-python.pylint",
+    "editor.defaultFormatter": "ms-python.autopep8",
     "[python]": {
-        "editor.defaultFormatter": "ms-python.pylint"
-    }
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": false
+  }
 
 }
